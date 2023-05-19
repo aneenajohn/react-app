@@ -1,39 +1,27 @@
-import React, { useState } from 'react'
-import {MemoizedCard} from './Card';
+import React, { useState } from 'react';
+import { MemoizedCard } from './Card';
 import '../styles/card.css';
-import { useEffect } from 'react';
 
-const CardContaniner = ({ numOfCards }) => {
-    // const renderCards = () => {
-    //     const cards = [];
-    //     for(let i=0;i<numOfCards;i++) {
-    //         cards.push(<Card />)
-    //     }
-    //     console.log("cards: ", cards);
-    //     return cards;
-    // }
-    const [isHidden, setHidden] = useState(true)
+const CardContainer = ({ numOfCards }) => {
+  const [visibleCardIndex, setVisibleCardIndex] = useState(null);
 
-    const showHideCardHandler = () => {
-        console.log("onClick called");
-        setHidden(() => setHidden(!isHidden))
-    }
-
-    console.log({isHidden});
+  const toggleCardVisibility = (index) => {
+    setVisibleCardIndex((prevVisibleCardIndex) =>
+      prevVisibleCardIndex === index ? null : index
+    );
+  };
 
   return (
     <div className='card-container my-1 mx-1'>
-        {Array.from({length: numOfCards}).map((_,index)=>{
-            return (
-                <MemoizedCard 
-                    key={index} 
-                    onClick={showHideCardHandler} 
-                    isHidden={isHidden}
-                />
-            )
-        })}
+      {Array.from({ length: numOfCards }).map((_, index) => (
+        <MemoizedCard
+          key={index}
+          onClick={() => toggleCardVisibility(index)}
+          isVisible={visibleCardIndex === index}
+        />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default CardContaniner;
+export default CardContainer;

@@ -1,0 +1,13 @@
+.card-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.my-1 {
+    margin: 1rem 0;
+}
+
+.mx-1 {
+    margin: 0 irem;
+}

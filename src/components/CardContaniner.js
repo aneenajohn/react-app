@@ -1,18 +1,25 @@
 import React from 'react'
+import Card from './Card';
+import { useEffect } from 'react';
 
-const CardContaniner = ({numOfCards}) => {
-    let cards = new Array().fill(numOfCards)
-    console.log({cards});
+const CardContaniner = ({ numOfCards }) => {
+    // const renderCards = () => {
+    //     const cards = [];
+    //     for(let i=0;i<numOfCards;i++) {
+    //         cards.push(<Card />)
+    //     }
+    //     console.log("cards: ", cards);
+    //     return cards;
+    // }
+
   return (
-    <div>
-       {[1,2,3,4,5].map((_) => {
+    <>
+        {Array.from({length: numOfCards}).map((_,index)=>{
             return (
-                <div className='' style={{width: '50px', height: '60px', border: '1px sold black'}} >
-                    <p>Content on card</p>
-                </div>
+                <Card key={index} />
             )
-       })}
-    </div>
+        })}
+    </>
   )
 }
 
